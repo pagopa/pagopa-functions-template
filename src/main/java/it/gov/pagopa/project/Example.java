@@ -1,6 +1,7 @@
 package it.gov.pagopa.project;
 
 import com.microsoft.azure.functions.*;
+import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 
@@ -23,7 +24,8 @@ public class Example {
             @HttpTrigger(
                     name = "ExampleTrigger",
                     methods = {HttpMethod.GET},
-                    route = "example") HttpRequestMessage<Optional<String>> request,
+                    route = "example",
+                    authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
 
         Logger logger = context.getLogger();
