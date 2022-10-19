@@ -2,6 +2,13 @@
 
 Java template to create an Azure Function.
 
+- Configuration to deploy on standard Azure service:
+  - rename `deploy-pipelines-standard.yml` to `deploy-pipelines.yml`
+  - remove `helm` folder
+- Configuration to deploy on Kubernetes: 
+  - rename `deploy-pipelines-aks.yml` to `deploy-pipelines.yml`
+  - customize `helm` configuration
+
 ## Function examples
 There is an example of a Http Trigger function.
 
