@@ -28,12 +28,15 @@ There is an example of a Http Trigger function.
 
 
 ## TODO
-Once cloned the repo, you should configure the following GitHub action in `.github` folder: 
-- `deploy.yml`
-- `sonar_analysis.yml`
-
-and pipeline configuration in `.devops` folder:
-- `code-review-pipelines.yaml`
-- `deploy-pipelines.yaml`
+Once cloned the repo, you should:
+- to deploy on standard Azure service:
+  - rename `deploy-pipelines-standard.yml` to `deploy-pipelines.yml`
+  - remove `helm` folder
+- to deploy on Kubernetes:
+  - rename `deploy-pipelines-aks.yml` to `deploy-pipelines.yml`
+  - customize `helm` configuration
+- configure the following GitHub action in `.github` folder: 
+  - `deploy.yml`
+  - `sonar_analysis.yml`
 
 Configure the SonarCloud project :point_right: [guide](https://pagopa.atlassian.net/wiki/spaces/DEVOPS/pages/147193860/SonarCloud+experimental).

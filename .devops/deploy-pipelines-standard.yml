@@ -157,14 +157,14 @@ stages:
               git checkout $(SOURCE_BRANCH)
             displayName: Checkout on source branch
 
-#          - task: Bash@3
-#            name: application_properties
-#            inputs:
-#              targetType: "inline"
-#              script: |
-#                cp src/main/resources/application-azure-$(STAGE).properties src/main/resources/application.properties
-#                cat src/main/resources/application.properties
-#              failOnStderr: true
+          #          - task: Bash@3
+          #            name: application_properties
+          #            inputs:
+          #              targetType: "inline"
+          #              script: |
+          #                cp src/main/resources/application-azure-$(STAGE).properties src/main/resources/application.properties
+          #                cat src/main/resources/application.properties
+          #              failOnStderr: true
 
           - task: Cache@2
             inputs:
@@ -237,27 +237,27 @@ stages:
             inputs:
               delayForMinutes: '10'
 
-#      - job: integrationTests
-#        dependsOn: waitStartup
-#        steps:
-#          - script: |
-#              git checkout $(SOURCE_BRANCH)
+      #      - job: integrationTests
+      #        dependsOn: waitStartup
+      #        steps:
+      #          - script: |
+      #              git checkout $(SOURCE_BRANCH)
 
-#          - script: |
-#              yarn global add newman
-#            displayName: 'newman installation'
+      #          - script: |
+      #              yarn global add newman
+      #            displayName: 'newman installation'
 
-#          - script: |
-#              newman run api-test/Project.postman_collection.json --environment=api-test/Azure.postman_environment.json --reporters cli,junit --reporter-junit-export Results/api-config-TEST.xml --verbose
-#            displayName: 'Run api test'
-#            continueOnError: false
+      #          - script: |
+      #              newman run api-test/Project.postman_collection.json --environment=api-test/Azure.postman_environment.json --reporters cli,junit --reporter-junit-export Results/api-config-TEST.xml --verbose
+      #            displayName: 'Run api test'
+      #            continueOnError: false
 
-#          - task: PublishTestResults@2
-#            condition: always()
-#            inputs:
-#              testResultsFormat: 'JUnit'
-#              testResultsFiles: '**/*-TEST.xml'
-#              searchFolder: '$(System.DefaultWorkingDirectory)'
+      #          - task: PublishTestResults@2
+      #            condition: always()
+      #            inputs:
+      #              testResultsFormat: 'JUnit'
+      #              testResultsFiles: '**/*-TEST.xml'
+      #              searchFolder: '$(System.DefaultWorkingDirectory)'
 
       - job: deployUAT
         dependsOn: integrationTests
